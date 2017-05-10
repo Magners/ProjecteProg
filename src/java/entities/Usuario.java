@@ -6,20 +6,16 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario")
+    , @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")
     , @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo")
     , @NamedQuery(name = "Usuario.findByDireccion", query = "SELECT u FROM Usuario u WHERE u.direccion = :direccion")
     , @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono")
@@ -43,6 +40,11 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "password")
+    private String password;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -57,8 +59,6 @@ public class Usuario implements Serializable {
     @Size(max = 50)
     @Column(name = "departamento")
     private String departamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private Collection<Alquiler> alquilerCollection;
 
     public Usuario() {
     }
@@ -67,9 +67,10 @@ public class Usuario implements Serializable {
         this.correo = correo;
     }
 
-    public Usuario(String correo, String nombreUsuario) {
+    public Usuario(String correo, String nombreUsuario, String password) {
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
+        this.password = password;
     }
 
     public String getNombreUsuario() {
@@ -78,6 +79,14 @@ public class Usuario implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCorreo() {
@@ -110,15 +119,6 @@ public class Usuario implements Serializable {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
-    }
-
-    @XmlTransient
-    public Collection<Alquiler> getAlquilerCollection() {
-        return alquilerCollection;
-    }
-
-    public void setAlquilerCollection(Collection<Alquiler> alquilerCollection) {
-        this.alquilerCollection = alquilerCollection;
     }
 
     @Override
