@@ -5,19 +5,22 @@
  */
 package servlet;
 
+import beans.NewSessionBean;
+import entities.*;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import static java.lang.Boolean.*;
+ import java.util.Date;
+ import javax.ejb.EJB;
+ import javax.servlet.ServletException;
+ import javax.servlet.http.HttpServlet;
+ import javax.servlet.http.HttpServletRequest;
+ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author ferran
  */
 public class newUser extends HttpServlet {
-
+    @EJB NewSessionBean ejb;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,20 +32,33 @@ public class newUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet newUser</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet newUser at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            response.setContentType("text/html;charset=UTF-8");
+        
+             if ("New".equals(request.getParameter("newuser"))) {
+                String nombreusuario=request.getParameter("nombre_usuario");
+                String password=request.getParameter("password");
+                String correo=request.getParameter("correo");
+                String direccion=request.getParameter("direccion");
+                String telefono=request.getParameter("telefono");
+                Integer telf=Integer.parseInt(telefono);
+                String departamento=request.getParameter("departamento");
+                Usuario u=new Usuario(nombreusuario,password,correo,direccion,telf,departamento);
+            
+             String msg;
+             Boolean succes;
+             if (ejb.insertUsuario(u)) {
+                 msg = "Usuario registrado correctamente";
+                 succes=TRUE;
+             } else {
+                 msg = "no se ha podido regitrar";
+                 succes=FALSE;
+             }
+             request.setAttribute("msg", msg);
+             request.setAttribute("succes",succes);
+             request.getRequestDispatcher("/final.jsp").forward(request, response);
+             }
     }
+             
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
