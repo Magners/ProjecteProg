@@ -32,41 +32,42 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                    <form>
+                    <form action="newUser" method="POST">
                         <div class="form-group">
                             <label for="nombre_usuario">Introduce un nombre de usuario:</label>
-                            <input type="text" class="form-control" id="nombre_usuario">
+                            <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario">
                         </div>
                         <div class="form-group">
                             <label for="password">Introduce un password:</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="form-group">
                             <label for="password2">Repite el password:</label>
-                            <input type="password" class="form-control" id="password2">
+                            <input type="password" class="form-control" id="password2" name="password2">
                         </div>
                         <div class="form-group">
                             <label for="correo">Introduce tu email</label>
-                            <input type="email" class="form-control" id="correo">
+                            <input type="email" class="form-control" id="correo" name="correo">
                         </div>
                         <div class="form-group">
                             <label for="direccion">Intruduce tu dirección</label>
-                            <input type="text" class="form-control" id="direccion">
+                            <input type="text" class="form-control" id="direccion" name="direccion">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Intruduce tu número de telefono</label>
-                            <input type="text" class="form-control" id="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono">
                         </div>
                         <div class="form-group">
                             <label for="departamento">Seleciona tu depatamento:</label>
-                            <select class="form-control" id="departamento">
+                            <select class="form-control" id="departamento" name="departamento">
                                 <option>depatamento 1</option>
                                 <option>depatamento 2</option>
                                 <option>depatamento 3</option>
                                 <option>depatamento 4</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        
+                        <button type="submit" class="btn btn-primary btn-block" value="New" name="newuser">Entrar</button>
                     </form>
                 </div>
                 <div class="col-md-5"></div>
