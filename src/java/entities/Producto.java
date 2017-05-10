@@ -6,9 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
     , @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto")
     , @NamedQuery(name = "Producto.findByTipo", query = "SELECT p FROM Producto p WHERE p.tipo = :tipo")
+    , @NamedQuery(name = "Producto.findByPrecioDia", query = "SELECT p FROM Producto p WHERE p.precioDia = :precioDia")
     , @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion")})
 public class Producto implements Serializable {
 
@@ -56,11 +53,13 @@ public class Producto implements Serializable {
     private String tipo;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "PrecioDia")
+    private int precioDia;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
-    private Collection<Alquiler> alquilerCollection;
 
     public Producto() {
     }
@@ -69,10 +68,11 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto, String nombreProducto, String tipo, String descripcion) {
+    public Producto(Integer idProducto, String nombreProducto, String tipo, int precioDia, String descripcion) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.tipo = tipo;
+        this.precioDia = precioDia;
         this.descripcion = descripcion;
     }
 
@@ -100,21 +100,20 @@ public class Producto implements Serializable {
         this.tipo = tipo;
     }
 
+    public int getPrecioDia() {
+        return precioDia;
+    }
+
+    public void setPrecioDia(int precioDia) {
+        this.precioDia = precioDia;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    @XmlTransient
-    public Collection<Alquiler> getAlquilerCollection() {
-        return alquilerCollection;
-    }
-
-    public void setAlquilerCollection(Collection<Alquiler> alquilerCollection) {
-        this.alquilerCollection = alquilerCollection;
     }
 
     @Override
