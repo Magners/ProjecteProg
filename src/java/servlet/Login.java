@@ -38,25 +38,19 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
+  
             String nombreusuario=request.getParameter("nombre_usuario");
-            if (ejb.username(nombreusuario)){
-                out.println("<p>goooood</p>");
+            String password=request.getParameter("password");
+            if (ejb.userpass(nombreusuario,password)){
+                 request.getSession(true).setAttribute("user", nombreusuario);
+    
+                
             }
             else{
-                    out.println("<p>fail</p>");
+                   
             }
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+              response.sendRedirect(request.getContextPath() + "/entrar.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

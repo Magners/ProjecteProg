@@ -80,15 +80,9 @@ public class NewSessionBean {
         em.close();
         return encontrado != null;
     }
-    
-      public boolean existUsn(String p) {
-        EntityManager em = emf.createEntityManager();
-        Usuario encontrado = em.find(Usuario.class, p);
-        em.close();
-        return encontrado != null;
-    }
 
- public boolean username(String usn) {
+
+ public boolean userpass(String usn,String pass) {
 
         EntityManager em = emf.createEntityManager();
         
@@ -96,7 +90,7 @@ public class NewSessionBean {
         usuario1.setParameter("nombreUsuario", usn);
                         
         Usuario result1 = (Usuario) usuario1.getSingleResult(); 
-        if (result1.getNombreUsuario().equalsIgnoreCase(usn)) {
+        if (result1.getNombreUsuario().equalsIgnoreCase(usn)&& result1.getPassword().equalsIgnoreCase(pass)) {
            return TRUE;
         } else {
             return FALSE;
