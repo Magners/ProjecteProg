@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
             else{
                    
             }
-              response.sendRedirect(request.getContextPath() + "/entrar.jsp");
+              response.sendRedirect(request.getContextPath() + "/homepage.jsp");
         
     }
 
