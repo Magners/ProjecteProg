@@ -1,21 +1,15 @@
 <%-- 
-    Document   : homepage
-    Created on : 11-may-2017, 17:43:44
+    Document   : calendario
+    Created on : 13-may-2017, 16:49:50
     Author     : magne
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
         <link href="libs/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="libs/testing.css" rel="stylesheet" type="text/css"/>
     </head>
@@ -38,38 +32,28 @@ and open the template in the editor.
         <div class="page-header">
             <h1 align="center">Alquiler 420 projectat <small>Magner&Torrafa</small></h1>
         </div>
-        <br><br>
-        <h3 align="center">Indica el tipo de producto que deseas alquilar: </h3>
+        <br>
+        <h3 align="center">Confirmación del alquiler:</h3>
+        <br>
         <div class="container-fluid">
-            <br><br>
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item4">Proyector</a>
-                </div>
-                <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item3">Portatil</a>
-                </div>
-                <div class="col-md-2"></div>
+                <!--MOSTRAR DATOS DEL ALQUILER QUE SE VA A REALIZAR -->
             </div>
-            <br><br><br>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item3">Objecto3</a>
+                <div class="col-md-2">
+                   <a href="homepage.jsp" class="btn btn-primary" id="siAlquiler">Alquilar y regresar</a> 
                 </div>
-                <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item4">Objeto4</a>
+                <div class="col-md-2">
+                    <a href="homepage.jsp" class="btn btn-primary" id="noAlquiler">No alquilar</a>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
             </div>
         </div>
         <% } else {
         %>
         <h1>No hay usuario validado.</h1>
         <%
-             }%>
+            }%>
     </body>
-
 </html>
-
