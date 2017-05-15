@@ -7,12 +7,11 @@ package servlet;
 
 import beans.NewSessionBean;
 import java.io.IOException;
-import java.util.List;
 import entities.*;
 import java.io.PrintWriter;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,12 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ferran
  */
-@WebServlet(name = "seleccion", urlPatterns = {"/seleccion"})
-public class seleccion extends HttpServlet {
-
-    @EJB
+public class confirm extends HttpServlet {
+ @EJB
     NewSessionBean ejb;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,14 +35,17 @@ public class seleccion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String item = request.getParameter("item");
-       // List<Producto> prs = ejb.getpr(item);
-        request.setAttribute("item", item);
-       // request.setAttribute("prs", prs);
- request.getSession(true).setAttribute("item", item);
-        request.getRequestDispatcher("/calendario.jsp").forward(request, response);
-
+        String idp=request.getParameter("sel1");
+        String user = (String) request.getSession(true).getAttribute("user");
+     
+        Random generator = new Random(); 
+int i = generator.nextInt(5000) + 1;
+        Alquiler a=new Alquiler();
+        a.setIdAlquiler(i);
+       //a.setIdProducto(sel1);
+       ejb.insertAlquiler(a);
+           request.getRequestDispatcher("/confirmacion.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

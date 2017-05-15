@@ -6,13 +6,12 @@
 package servlet;
 
 import beans.NewSessionBean;
+import entities.Producto;
 import java.io.IOException;
-import java.util.List;
-import entities.*;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ferran
  */
-@WebServlet(name = "seleccion", urlPatterns = {"/seleccion"})
-public class seleccion extends HttpServlet {
+public class calendario2 extends HttpServlet {
 
     @EJB
     NewSessionBean ejb;
@@ -40,13 +38,16 @@ public class seleccion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String item = request.getParameter("item");
-       // List<Producto> prs = ejb.getpr(item);
-        request.setAttribute("item", item);
-       // request.setAttribute("prs", prs);
- request.getSession(true).setAttribute("item", item);
-        request.getRequestDispatcher("/calendario.jsp").forward(request, response);
+        String item = (String) request.getSession(true).getAttribute("item");
+        String init = request.getParameter("fechaInicio");
+        String fin = request.getParameter("fechaFin");
 
+        List<Producto> prs = ejb.getpr(item);
+        request.setAttribute("item", item);
+        request.setAttribute("prs", prs);
+        request.getSession(true).setAttribute("init", init);
+        request.getSession(true).setAttribute("fin", fin);
+        request.getRequestDispatcher("/seleccionarProducto.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -12,6 +12,18 @@
         <servlet-name>LogOut</servlet-name>
         <servlet-class>servlet.LogOut</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>calendario</servlet-name>
+        <servlet-class>servlet.calendario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>calendario2</servlet-name>
+        <servlet-class>servlet.calendario2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirm</servlet-name>
+        <servlet-class>servlet.confirm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>newUser</servlet-name>
         <url-pattern>/newUser</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calendario</servlet-name>
+        <url-pattern>/calendario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>calendario2</servlet-name>
+        <url-pattern>/calendario2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirm</servlet-name>
+        <url-pattern>/confirm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

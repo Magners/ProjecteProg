@@ -10,21 +10,19 @@ import java.io.IOException;
 import java.util.List;
 import entities.*;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author ferran
  */
-@WebServlet(name = "seleccion", urlPatterns = {"/seleccion"})
-public class seleccion extends HttpServlet {
-
-    @EJB
+public class calendario extends HttpServlet {
+ @EJB
     NewSessionBean ejb;
 
     /**
@@ -39,14 +37,26 @@ public class seleccion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String item = request.getParameter("item");
-       // List<Producto> prs = ejb.getpr(item);
+       
+         //String item = request.getParameter("item");
+         //String item = (String) request.getSession(true).getAttribute("item");
+         String item="Proyector";
+         String init = request.getParameter("fechaInicio");
+        String fin = request.getParameter("fechaFin");
+       Date findt=new Date(fin);
+         Date initdt=new Date(init);
+         
+         
+         List<Producto> prs = ejb.getpr(item);
         request.setAttribute("item", item);
-       // request.setAttribute("prs", prs);
- request.getSession(true).setAttribute("item", item);
-        request.getRequestDispatcher("/calendario.jsp").forward(request, response);
+       request.setAttribute("prs", prs);
 
+        request.getRequestDispatcher("/seleccionarProducto.jsp").forward(request, response);
+//         
+//         
+//            
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

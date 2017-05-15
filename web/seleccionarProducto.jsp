@@ -44,21 +44,24 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-2">
                     <div class="form-group">
+                        <form action="confirm" method="POST">
                         <label for="sel1">Modelo:</label>  <!--Mostrar el productes del tipus seleccionat a la homepage, que estiguin lliures els dies seleccionats -->
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" id="sel1" name="sel1">
 
                             <%
                                 List<Producto> prs = (List<Producto>) request.getAttribute("prs");
                                 for (Producto pr : prs) {
                             %>
 
-                            <option><%= pr.getNombreProducto()%></option> 
+                            <option value="<%= pr.getNombreProducto()%>"><%= pr.getNombreProducto()%></option> 
 
                             <% }
                             %>
                         </select>
+                        <button type="submit" class="btn btn-primary" id="okConfirmacion">Alquilar!</button >
+                        </form>
                         <br>
-                        <a href="confirmacion.jsp" class="btn btn-primary" id="okConfirmacion">Alquilar!</a>
+                   
                     </div>
                 </div>
                 <div class="col-md-5"></div>

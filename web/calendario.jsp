@@ -38,7 +38,7 @@
             <br>
             <div class="row">
                 <div class="col-md-4"></div>
-                <form>
+                <form action="calendario2" method="POST">
                     <div class="col-md-1">
                         <h4>Recogida:</h4>
                         <input type="date" name="fechaInicio" id="fechaInicio">    <!--FER EL CHGECK QUE LA FECHA FIN SIGUI POSTERIOR A LA FECHA INICIO  -->
@@ -48,18 +48,22 @@
                         <div class="form-group">
                             <h4>Devolución:</h4>
                             <input type="date" name="fechaFin" id="fechaFin">
+                            <button type="submit" class="btn btn-primary" id="okCalendario">Seleccionar producto</button>
                         </div>
                     </div>
-                </form>
+                    
+                   </form>
                 <div class="col-md-5"></div>
             </div>
+         
             <br>
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-1">
-                    <a href="seleccionarProducto.jsp" class="btn btn-primary" id="okCalendario">Seleccionar producto</a>
+                  <!--  <a href="seleccionarProducto.jsp" class="btn btn-primary" id="okCalendario">Seleccionar producto</a>-->
                 </div>
                 <div class="col-md-6"></div>
+               
             </div>
         </div>
         <% } else {
