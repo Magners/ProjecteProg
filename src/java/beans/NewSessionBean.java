@@ -96,4 +96,19 @@ public class NewSessionBean {
             return FALSE;
         }
     }
+ 
+ 
+ public List<Producto> getpr (String item){
+     
+     EntityManager em = emf.createEntityManager();
+        
+        Query prs=em.createNamedQuery("Producto.findByTipo");
+        prs.setParameter("tipo", item);
+        
+        List<Producto> result = prs.getResultList();
+     return result;
+ }
+ 
+ 
+ 
 }

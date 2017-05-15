@@ -45,22 +45,26 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item4">Proyector</a>
+                    <form action="seleccion" method="POST">
+                    <button type="submit" class="btn-lg btn-primary" value="proyector" name="item">Proyector</button>
+                    </form>
                 </div>
                 <div class="col-md-3">
-                    <a href="calendario.jsp" class="btn-lg btn-primary" id="item3">Portatil</a>
+                     <form action="seleccion" method="POST">
+                    <button type="submit" class="btn-lg btn-primary" value="portatil" name="item">Portatil</button>
+                    </form>
                 </div>
                 <div class="col-md-2"></div>
             </div>
             <br><br><br>
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-3">
                     <a href="calendario.jsp" class="btn-lg btn-primary" id="item3">Objecto3</a>
                 </div>
                 <div class="col-md-3">
                     <a href="calendario.jsp" class="btn-lg btn-primary" id="item4">Objeto4</a>
-                </div>
+                </div>-->
                 <div class="col-md-2"></div>
             </div>
         </div>

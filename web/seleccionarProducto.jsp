@@ -4,6 +4,9 @@
     Author     : magne
 --%>
 
+
+<%@page import="java.util.List"%>
+<%@page import="entities.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +20,7 @@
         <%
             String user = (String) session.getAttribute("user");
             if (user != null) {
+                String item = (String) request.getAttribute("item");
         %>
         <div class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Wrapper for slides -->
@@ -42,10 +46,16 @@
                     <div class="form-group">
                         <label for="sel1">Modelo:</label>  <!--Mostrar el productes del tipus seleccionat a la homepage, que estiguin lliures els dies seleccionats -->
                         <select class="form-control" id="sel1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+
+                            <%
+                                List<Producto> prs = (List<Producto>) request.getAttribute("prs");
+                                for (Producto pr : prs) {
+                            %>
+
+                            <option><%= pr.getNombreProducto()%></option> 
+
+                            <% }
+                            %>
                         </select>
                         <br>
                         <a href="confirmacion.jsp" class="btn btn-primary" id="okConfirmacion">Alquilar!</a>
